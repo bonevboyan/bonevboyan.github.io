@@ -102,7 +102,7 @@ class Game {
 //trigger game over when five incorrect choices have been made
 
         if(this.missed === 5) {
-            document.querySelector('#overlay h1').innerHTML = "Better luck next time!";
+            document.querySelector('#overlay h1').innerHTML = "Slabo bih kazal";
             document.querySelector('#overlay h3').innerHTML = `(${this.activePhrase.phrase})`;
             this.missed = 0;
             this.gameOver();
@@ -118,7 +118,7 @@ class Game {
 
 //create overlay message for win
 
-            document.querySelector('#overlay h1').innerHTML = "Congratulations, you win!";
+            document.querySelector('#overlay h1').innerHTML = "Bravo na detetoooo";
 
 //display the phrase the user was required to guess
 

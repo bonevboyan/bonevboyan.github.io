@@ -161,6 +161,7 @@ const phraseArray = [
     "shefche",
     "bravo na detetooo",
     "dvoino stiskane na rukata",
+    "mnogo milo",
 ]
 
 
