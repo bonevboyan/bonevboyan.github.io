@@ -1,73 +1,11 @@
-/*
-    Word Guessing Game
-    Phrase.js
-*/
+document.querySelector(".button").addEventListener("click", x => {
+    console.log('sdaasdsa')
+    document.querySelector("img").setAttribute("src", nextPic)
+    document.querySelector("h2").innerHTML = getPhrase();
+    nextPic = getPic();
+})
 
-//Phrase constructor class
-
-class Phrase {
-    constructor(phrase) {
-    this.phrase = phrase.toLowerCase();
-}
-
-//add randomly selected phrase to display
-
-    addPhraseToDisplay() {
-        let picIndex = Math.floor(Math.random() * picsArray.length);
-        console.log(picIndex)
-        let link = picsArray[picIndex];
-        document.body.style.backgroundImage = `url(${link})`;
-        console.log(link)
-        console.log(link)
-        console.log(document.querySelector('.main-container'))
-//split phrase string into array of characters
-
-        let phraseLetters = this.phrase.split('');
-        phraseLetters.forEach(letter => {
-
-//create placeholder for each non-space character
-
-            let placeholder = document.createElement('li');
-            if(letter === " "){
-                placeholder.className = "space";
-            } else {
-                placeholder.className = `hide letter ${letter}`;
-                placeholder.innerHTML = `${letter}`;
-            }
-            document.getElementById('phrase').firstElementChild.appendChild(placeholder);
-        });
-
-//insert line breaks to prevent words from confusingly overflowing onto a new line
-
-        const spacesArray = document.querySelectorAll('.section > ul > li.space');
-        if(spacesArray.length >= 3 && spacesArray.length < 7) {
-            document.querySelectorAll('.section > ul > li.space')[2].after(document.createElement('br'));
-        } else if(spacesArray.length >= 7) {
-            document.querySelectorAll('.section > ul > li.space')[2].after(document.createElement('br'));
-            document.querySelectorAll('.section > ul > li.space')[4].after(document.createElement('br'));
-            document.querySelectorAll('.section > ul > li.space')[6].after(document.createElement('br'));
-        }
-    }
-
-//check whether phrase contains the letter selected by the user
-
-    checkLetter(letter) {
-        if(this.phrase.includes(letter)) {
-            return true;
-        }
-    }
-
-//reveal correctly selected letter
-
-    showMatchedLetter(letter) {
-        let correctLetters = document.querySelectorAll(`.${letter}`);
-            for(let i = 0; i < correctLetters.length; i++) {
-            correctLetters[i].classList.replace('hide', 'show');
-        }
-    }
-}
-
-//store phrases in an array
+var nextPic = "https://lh3.googleusercontent.com/pw/AM-JKLXC8njziwzl86aWCKmBI-5kEV4Do_qSwveKWiqrVvdbxQJ_vQ4gVUcA0ZwdU8v3B-gjfvfDuHcael850AdpN3NJ-ymKmXhajgSGmhnifoP55uYNtcGlGwuY9DEO8roSsY3CkTtDH3ozUhNG2wLTQcxo=w1204-h902-no?authuser=0";
 
 const picsArray = [
     "https://lh3.googleusercontent.com/pw/AM-JKLXC8njziwzl86aWCKmBI-5kEV4Do_qSwveKWiqrVvdbxQJ_vQ4gVUcA0ZwdU8v3B-gjfvfDuHcael850AdpN3NJ-ymKmXhajgSGmhnifoP55uYNtcGlGwuY9DEO8roSsY3CkTtDH3ozUhNG2wLTQcxo=w1204-h902-no?authuser=0",
@@ -116,57 +54,71 @@ const picsArray = [
     "https://lh3.googleusercontent.com/pw/AM-JKLX-PWP-cXgtqJMQw0gUoxBi9PD9XoS5Pm_hbySk0g8XdJFuyM6ECAWyu2mFnWDeRDiIgDSFnu27KrvQ0_9y5C62yjR19nN2COLNYAvOhA07xejCCvXVDTEPqu3NVvbyrmmJehuYIoA7JVpjoOI4G0xZ=w1204-h902-no?authuser=0",
     "https://lh3.googleusercontent.com/pw/AM-JKLXLMioEOXKEGzEQ1g0hZwRV-R_Y7AdXZ_Lvc7XvaeGluTNYBDxIiTMBJ4qdNuOLCc9CDAltw-ezgGR6jNwGUbb0NIjhiQq5Y75vvpJ3deifBiTO3vYZRYQhtw_M08KmpIe--qdlppJkMU1EdnYyMcZ4=w1204-h902-no?authuser=0",
     "https://lh3.googleusercontent.com/pw/AM-JKLXJqVwyFaphu2VauWHDzB00lcvm91_hRTPw_yPYO3eTMG5gCbuPi2Ah3itoM5tbCUneBHbL8Jozf9OFkg1fBonw3T-1XkJdq4y7-ErceNHYbKaxtiDkR-yxGpyTQBR1QiTEmcSWmP0IAm7MQijm8oMx=w1204-h902-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/AM-JKLVrGvmIYwMZadm-0bLJka96y5QUSuJGcPwrZblTlGg_q7xtMUvzLqDv-b5tddWJhQfXe0UAAmpR0OKC5a7j_4aSvM9c4Rlsel58cMU4-llO7oEO4shjdnYdx2CVWBxd80MjAG_3KK6qr8PJMv-PW7oE=w870-h405-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/AM-JKLVMXGD2wz44O3PHfLZFb-Pqmw006xbfV-CfJg4GjyWAI6gSM-v8MCSTbX_rSCQcW-tSB-P60DjSiAGmBuOBCR8KKl5-MKFNk8ToBanJOg22SerDHhLOjO1gCTz_PY_Lm11NiXqqWE_tCSMWhqRuPE57=w1605-h902-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/AM-JKLXPaXGjaFGbSsc18V7OYEHnmQJBl0_D5bkPclz_Gmic8NK09ymYLkLkrB-DEKpJtlRbKsnI0Fx3byoLZDsVirq_BvE2LFQMz_0EAkm0gD1B9h3tXmKxwmXnM3Zgj-YjMw8b9WBrddVveSUE6N2np48I=w677-h902-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/AM-JKLWc_66cyM-jpD0ddSPIRk63L-fPB9dofy90u3bwC-1ldTHctbB_RlM3xCbC3tmn-2RbjlKwu7zkXPsXi2IjNLvxT2TaHjdS0BEw-t65P3zu6chZmpg8ng6l5gKLmHkMMQxqcGFwe1c5JrbCGLrVfNp0=w1206-h902-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/AM-JKLWopDfh4z0i9k_LUCg_8XPDjK-twM52VxU7xGqBD-pmbWGse4YsugXqeIDY5Z1rcNk7BysHnDtkgfNx85GyK06IAsDzVsyihSZuZcA-V21He3kO-As84KH3bx9c2npm604rKNOTCNe9UvZInlWPX7lJ=w1206-h902-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/AM-JKLVqYN2CWCKY4vCANc4Gmov08cOPpqDaeLqUPaOoCgwxO_l_ec3qUNBDTA85L4YV5KJjvC3R9xpMl_r4hvEMmc7QFWLFE2hvyK8dCMhbfJxNVl9Q-5zWxdGeqZ0qSCurMpbKWLpcxQoiA7gbx1vKIiYE=w1206-h902-no?authuser=0",
+    "https://lh3.googleusercontent.com/pw/AM-JKLWJeVLc7QoQx40Z2dY8HNnzbQZ5mgFZFuw_6-nA091a6YmclEiT5rM8wU1P6aHVKRcla3jNbLrb0DeQZuubDk1LdB0KGCyQYFL8eZWWPBEzxuo8yr88aUJmK6npCGRdc9zlJGa-SptxtCJOXP3FCEtY=w1206-h902-no?authuser=0",
 ]
+
+var index = 0;
 
 const phraseArray = [
-    "desetka spatiq",
-    "eeee ne",
-    "ti ne kaza tova toku shto",
-    "yeeeeeees",
-    "tova beshe tvoqt krai",
-    "aide da ne mi kazvash kakvo da pravq",
-    "blagodarq shte kaja",
-    "tova beshe tvoqt krai",
-    "hora ot ei teq punkanki",
-    "karta za igrata kras roal",
-    "love me love me say that you love me",
-    "king daddy",
-    "viktooooor",
-    "jenskata toaletna",
-    "bobiii trqbva da si lqgash",
-    "ti imash straaashni ochi",
-    "ti si nevuobrazima",
-    "mai e ochevidno",
-    "imash dobur hod",
-    "no az ne ti kazvam kakvo da pravq az ti kazvam bobi",
-    "feet pics",
-    "pussy tight pussy clean pussy fresh",
-    "pussy pics",
-    "jerk off folder",
-    "tova ne beshe nai mudriqt mi hod",
-    "kotarankata",
-    "oh baby when you talk like that",
-    "baby you light up my world like nobody else",
-    "sushtestvenoto e nevidimo za ochite",
-    "tova mi zvuchi kato izcqlo tvoi problem",
-    "bukvaaaalno",
-    "mrusni celuvchici",
-    "ti ne si realna ti si imaginerna",
-    "suspisiozna baka",
-    "hihihiho",
-    "lesno mi e",
-    "svurshih",
-    "mqu",
-    "ligavnik",
-    "shefche",
-    "bravo na detetooo",
-    "dvoino stiskane na rukata",
-    "mnogo milo",
+    "ima neveroqtno chustvo za humor (az kogato golqmoto zabavno)",
+    "ima rai v ochite si zeleni kato americanski pari",
+    "e samo moq!!!",
+    "si govorim za porno",
+    "mi gotvi sladkishi chasove nared",
+    "shte mi pravi nai-dobrite svirki",
+    "e silna i nezavisima jena(i chovek syshto)",
+    "az kogato s maika ti kogato snoshti kogato dvamata kogato",
+    "e super umna(goddemit samo gubq sporove)",
+    "moga da sporq s neq dali 1 e cherveno ili sinio(ochevidno e cherveno)",
+    "vinagi mi spodelq ako neshto ne e nared",
+    "mi pishe 'mqu'",
+    "ima 44 snimki v JOF",
+    "vinagi se starae da izglejda dobre(i vinagi e neveroqtna)",
+    "drugite momicheta nqmat bluza na qgodi",
+    "kogato pod dusha kogato dvamata zaedno pod dusha kogato",
+    "ima strashni ochi (nai-strashnite)",
+    "mi obqsni razlikata mejdu transcendentalno i trasncendentno",
+    "mi proshtava kato govorq gluposti",
+    "gotvi strahotno",
+    "mi dava da pipkam kydedo pojelaq",
+    "ima strashna grydna obikolka (hihihiho)",
+    "se smee na typite mi shegi koito ne spiram da povtarqm",
+    "vinagi pravi neveroqtni podaryci",
+    "vinagi mi dava dyvka za da ne mirisha na kiseli krastavichki",
+    "bedrata i sa topli",
+    "govorim v discord 6 chasa",
+    "ne se syrdi che q biq na shah",
+    "e golqmo slarurche i mnogo si q obicham",
+    "vinagi nastoqva da plashta",
+    "vinagi e v nastroenie za natiskane (v chasa na vladeva nai-veche)",
+    "mi dava da i pravq smuchki i se gordee s tqh",
+    "ima nai qkiqt zadnik",
+    "ne sym bil po-shtastliv nikoga",
+    "sprqh da igraq liga",
+    "me motivira super mnogo",
+    "vinagi moga da pusna 20 min taimer i da q vidq",
+    "djobnite gadjeta sa nai-dobrite gadjeta",
+    "mi prashta kamioni pulni s lyubov",
+    "mi kaza che dumata bydeshte e bydeshte zashtoto shte byde (wtf)",
+    "mi e drago s neq 8==========D",
+    "preksuvasht'MUUUUUUUUUUUUUUUUUUUUU'ata krava koi",
 ]
 
+function getPic() {
+    let picIndex = Math.floor(Math.random() * picsArray.length);
+    let link = picsArray[picIndex];
+    return link;
+}
 
-const phraseStrings = [];
-
-for(let i = 0; i < phraseArray.length; i++) {
-    phraseStrings.push(window['phrase' + i] = new Phrase(phraseArray[i]));
+function getPhrase() {
+    if(index == phraseArray.length) index = 0;
+    let phrase = phraseArray[index];
+    index++;
+    return phrase;
 }
