@@ -108,6 +108,13 @@ const phraseArray = [
     "mi kaza che dumata bydeshte e bydeshte zashtoto shte byde (wtf)",
     "mi e drago s neq 8==========D",
     "preksuvasht'MUUUUUUUUUUUUUUUUUUUUU'ata krava koi",
+    "mi dava da styrja peti vyrhu pizzata",
+    "svurzva vsichko s 1984",
+"mi pee subemelaradio",
+"ima nai-mekite ustni ",
+"ne se sydri che se origvam dokato se natiskame",
+"ima nevidima taliq(ne q vijdam)",
+"mi vodi bezplatni lekcii za time management",
 ]
 
 function getPic() {
