@@ -1,0 +1,20 @@
+.items {
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 40rem;
+}
+
+.items ul {
+    list-style: none;
+    padding: 1rem;
+    
+}
+
+.items li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: azure;
+    background-color: #741188;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+}
